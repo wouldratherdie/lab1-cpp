@@ -16,10 +16,10 @@ void Line::spawn(int startX, int startY) {
     currentY = startY - length;
 }
 
-void Line::moveDown() {
+void Line::moveDown(int screenHeight) {
     Symbol* newSymbol = new Symbol('A', currentX, currentY, colorCode);
 
-    if (currentY >= 0) {
+    if (currentY >= 0 && currentY < screenHeight) {
         newSymbol->draw();
     }
     symbols.push_back(newSymbol);
@@ -27,10 +27,11 @@ void Line::moveDown() {
     if (symbols.size() > length) {
         Symbol* tail = symbols.front();
 
-        if (tail->getY() >= 0) {
+        if (tail->getY() >= 0 && tail->getY() < screenHeight) {
             tail->erase();
         }
 
+        delete tail;
         symbols.erase(symbols.begin());
     }
 

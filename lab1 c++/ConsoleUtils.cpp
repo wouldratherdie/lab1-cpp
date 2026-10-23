@@ -17,5 +17,20 @@ void ConsoleUtils::setColor(int colorCode) {
 }
 
 void ConsoleUtils::resetColor() {
-    setColor(7); // 7 - стандартный белый цвет
+    setColor(7);
+}
+
+void ConsoleUtils::hideCursor() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = FALSE;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+}
+
+void ConsoleUtils::getConsoleSize(int& width, int& height) {
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 }

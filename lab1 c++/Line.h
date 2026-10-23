@@ -17,7 +17,7 @@ public:
 
     void spawn(int startX, int startY);
 
-    void moveDown();
+    void moveDown(int screenHeight);
 
     bool isFinished(int screenHeight) const;
 
