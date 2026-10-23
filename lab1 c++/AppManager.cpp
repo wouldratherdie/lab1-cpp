@@ -97,6 +97,7 @@ void AppManager::runDialogMode() {
         std::cout << "Enable epilepsy mode? (Y/N): ";
         if (std::cin >> epi && (epi == 'Y' || epi == 'y' || epi == 'N' || epi == 'n')) {
             epilepsyMode = (epi == 'Y' || epi == 'y');
+            std::cin.ignore(10000, '\n');
             break;
         }
         std::cout << "Invalid input. Try again.\n";

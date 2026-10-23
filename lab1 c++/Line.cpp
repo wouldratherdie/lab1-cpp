@@ -17,7 +17,8 @@ void Line::spawn(int startX, int startY) {
 }
 
 void Line::moveDown(int screenHeight) {
-    Symbol* newSymbol = new Symbol('A', currentX, currentY, colorCode);
+    char randomChar = 'A' + (rand() % 26);
+    Symbol* newSymbol = new Symbol(randomChar, currentX, currentY, colorCode);
 
     if (currentY >= 0 && currentY < screenHeight) {
         newSymbol->draw();
